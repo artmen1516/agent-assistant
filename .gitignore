@@ -1,14 +1,10 @@
-# Environment Secrets
+# Environment
 .env
 
-# Data Persistence (The "State")
-ollama_data/
-openfang_data/
-*/logs/
-*.db
-*.log
+# Install artifacts (npx skills add creates these locally)
+.agents/
+.skills/
+node_modules/
 
-# Python/UV artifacts (if any)
-__pycache__/
-.venv/
-.uv/
+# OS
+.DS_Store

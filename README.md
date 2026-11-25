@@ -24,6 +24,8 @@ npx skills add artmen1516/agent-assistant --skill obsidian-vault
 ## Skills
 
 - `obsidian-vault` - how to read/write the shared Obsidian vault (notes, ideas, projects, tracking).
+- `ideas-y-drafts` - capture, refine, and track ideas across sessions (now backed by the Obsidian vault).
+- `hermes-service-maintenance` - maintain Hermes gateway/dashboard launchd services on macOS.
 
 ## Rules
 

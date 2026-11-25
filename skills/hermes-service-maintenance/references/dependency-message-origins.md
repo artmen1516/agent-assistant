@@ -1,24 +1,24 @@
-# De dónde sale cada mensaje de dependencias
+# Where each dependency message comes from
 
-Mapa mensaje → origen → qué lo dispara → qué hacer. Sirve para responder "¿por qué me sale esto?"
-sin adivinar ni instalar paquetes de más. En la instalación Homebrew los catálogos están en
-`/opt/homebrew/opt/hermes-agent/share/hermes-agent/locales/` y el código en
+Message → origin → what triggers it → what to do. Used to answer "why am I seeing this?"
+without guessing or installing extra packages. In the Homebrew install the catalogs are in
+`/opt/homebrew/opt/hermes-agent/share/hermes-agent/locales/` and the code in
 `…/libexec/lib/python3.X/site-packages/`.
 
-| Mensaje que ve el usuario | Origen | Disparador | Acción |
+| Message the user sees | Origin | Trigger | Action |
 |---|---|---|---|
-| `Faltan dependencias de voz (PyNaCl / davey). Ejecuta: …` (clave `channel_deps_missing`) | catálogo `es.yaml` | canal con voz (llamadas) activado y `nacl`/`davey` ausentes en el venv del keg | instalar PyNaCl y davey en el venv del keg con el mismo `uv pip install --python /opt/homebrew/opt/hermes-agent/libexec/bin/python …` del resto de extras; sin voz en canales no aplica |
-| `The {surface} can't start: {what} are missing from this install. Run `hermes pm install`.` | `hermes_cli/main_dep_hints.py :: missing_optional_deps_message` | sólo dashboard, vía `_require_dashboard_web_deps()`, cuando `fastapi`/`uvicorn` no importan | instalar las web deps o entrar por CLI/gateway; el dashboard no arranca sin ellas |
-| `hermes: no dependency environment is committed for this install; run 'hermes pm repair'` | `pm/environments.py`, recuperación temprana (`hermes_cli/_early_recovery.py`) | hueco PM del paquete Homebrew (keg sin `venv/`/`uv.lock`) | es el bug del lanzador PM: ver la sección correspondiente del SKILL.md, no `hermes pm repair` |
-| `install out of sync (ffmpeg/npm/ripgrep: not installed or outdated) — this unknown-managed install must rebuild the artifact to fix` | `hermes gateway status` / `pm.install.drift()` | el keg no declara `install-stamp.json` | declarar la instalación como externa/sellada |
-| `Plugin <key> declares Python dependencies that are not installed: … run hermes pm repair, then restart Hermes` | `hermes_cli/plugins_loader.py :: _warn_python_dependencies` (`logger.warning`, no pantalla) | manifest de plugin con `python_dependencies` no instaladas | revisar `plugins_entries` del plugin; el aviso sólo va al log |
-| `Missing dependency: install with 'python3 -m pip install …'` | scripts de skills (p. ej. `productivity/pdf`) | utilidad de terceros ausente | no es Hermes: se instala en el intérprete que use el script, no en el venv del keg |
-| `⚠ a2a (system dependency not met)` / `browser-cdp` / `feishu_*` en `hermes doctor` | gating de tools | falta binario, servicio o key de esa tool | es por-tool y opcional: no explica un aviso de arranque |
+| `Faltan dependencias de voz (PyNaCl / davey). Ejecuta: …` (key `channel_deps_missing`) | catalog `es.yaml` | voice channel (calls) enabled and `nacl`/`davey` missing in the keg's venv | install PyNaCl and davey in the keg's venv with the same `uv pip install --python /opt/homebrew/opt/hermes-agent/libexec/bin/python …` used for the rest of the extras; doesn't apply if no voice in channels |
+| `The {surface} can't start: {what} are missing from this install. Run `hermes pm install`.` | `hermes_cli/main_dep_hints.py :: missing_optional_deps_message` | dashboard only, via `_require_dashboard_web_deps()`, when `fastapi`/`uvicorn` don't import | install the web deps or enter via CLI/gateway; the dashboard won't start without them |
+| `hermes: no dependency environment is committed for this install; run 'hermes pm repair'` | `pm/environments.py`, early recovery (`hermes_cli/_early_recovery.py`) | PM gap in the Homebrew package (keg without `venv/`/`uv.lock`) | it's the PM launcher bug: see the corresponding section of SKILL.md, not `hermes pm repair` |
+| `install out of sync (ffmpeg/npm/ripgrep: not installed or outdated) — this unknown-managed install must rebuild the artifact to fix` | `hermes gateway status` / `pm.install.drift()` | the keg declares no `install-stamp.json` | declare the installation as external/sealed |
+| `Plugin <key> declares Python dependencies that are not installed: … run hermes pm repair, then restart Hermes` | `hermes_cli/plugins_loader.py :: _warn_python_dependencies` (`logger.warning`, not screen) | plugin manifest with `python_dependencies` not installed | review the plugin's `plugins_entries`; the notice only goes to the log |
+| `Missing dependency: install with 'python3 -m pip install …'` | skill scripts (e.g. `productivity/pdf`) | third-party utility missing | not Hermes: install in the interpreter the script uses, not in the keg's venv |
+| `⚠ a2a (system dependency not met)` / `browser-cdp` / `feishu_*` in `hermes doctor` | tool gating | missing binary, service or key for that tool | per-tool and optional: doesn't explain a startup notice |
 
-## Cómo confirmar en vez de suponer
+## How to confirm instead of assuming
 
-- La cadena literal del aviso en `es.yaml` / `es.tui.yaml` da la clave; la clave da el módulo.
-- `grep -rn "<fragmento del texto>" <site-packages>` localiza el `print`/`logger` que lo emite y
-  dice si es pantalla o sólo log.
-- Si el mensaje sale en la TUI pero no en `hermes -z`, es de arranque: reproducción en pty (ver
-  SKILL.md, paso 3), nunca conclusión por ausencia en los logs.
+- The literal string of the notice in `es.yaml` / `es.tui.yaml` gives the key; the key gives the module.
+- `grep -rn "<fragment of the text>" <site-packages>` locates the `print`/`logger` that emits it and
+  says whether it's screen or log only.
+- If the message appears in the TUI but not in `hermes -z`, it's a startup notice: reproduce in a pty
+  (see SKILL.md, step 3), never conclude from its absence in the logs.

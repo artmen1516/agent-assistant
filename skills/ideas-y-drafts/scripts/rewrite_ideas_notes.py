@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Reescribe notas de Apple Notes › carpeta 'Ideas' (delete + recreate).
+"""Rewrite notes in Apple Notes › folder 'Ideas' (delete + recreate).
 
-Uso: python3 rewrite_ideas_notes.py notas.json [carpeta]
+Usage: python3 rewrite_ideas_notes.py notes.json [folder]
 
-notas.json es una lista de:
-  {"name": "Título",
+notes.json is a list of:
+  {"name": "Title",
    "estado": "en curso",
-   "paras": ["Qué es", "texto...", "", ...],
-   "olds": ["nombres viejos a borrar"],      # opcional
-   "headings": ["Qué es", ...]}              # opcional; default HEADINGS_DEFAULT
+   "paras": ["Qué es", "text...", "", ...],
+   "olds": ["old names to delete"],      # optional
+   "headings": ["Qué es", ...]}              # optional; default HEADINGS_DEFAULT
 
-Un para == "" es línea en blanco; un para que está en headings sale en <b>.
-La primera línea de la nota es <b>Estado: <estado></b>.
-Verifica al final listando nombres y largos vía JXA (no reportar OK sin esa salida).
+A para == "" is a blank line; a para that is in headings is rendered in <b>.
+The first line of the note is <b>Estado: <estado></b>.
+Verify at the end by listing names and lengths via JXA (do not report OK without that output).
 """
 import json
 import subprocess
@@ -44,7 +44,7 @@ def html_body(estado, paras, headings):
 
 def main():
     if len(sys.argv) < 2:
-        sys.exit("uso: rewrite_ideas_notes.py notas.json [carpeta]")
+        sys.exit("usage: rewrite_ideas_notes.py notas.json [folder]")
     data = json.load(open(sys.argv[1]))
     folder = sys.argv[2] if len(sys.argv) > 2 else "Ideas"
     lines = ['tell application "Notes"']

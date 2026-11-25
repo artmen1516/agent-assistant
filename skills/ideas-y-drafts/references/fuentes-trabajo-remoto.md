@@ -1,38 +1,38 @@
-# Fuentes de vacantes remotas — verificación
+# Remote job vacancy sources — verification
 
-Base para la idea `Búsqueda de trabajo remoto — monitoreo y reporte`
-(senior/lead/staff, 100% remoto, MX/US/CA). Estos boards cambian sin aviso:
-re-verificar conteos al usarlos antes de construir sobre ellos.
+Base for the idea `Remote job search — monitoring and reporting`
+(senior/lead/staff, 100% remote, MX/US/CA). These boards change without notice:
+re-verify counts before building on them.
 
-## Con API/RSS que funcionan
+## With working API/RSS
 
 - **RemoteOK** — `https://remoteok.com/api`
-  JSON, ~100 vacantes por fetch. El primer elemento del array es un aviso legal, descartarlo.
-  Pide attribution con link a Remote OK (lo exige su ToS).
+  JSON, ~100 vacancies per fetch. The first element of the array is a legal notice, discard it.
+  Requests attribution with a link to Remote OK (required by their ToS).
 - **We Work Remotely** — `https://weworkremotely.com/categories/remote-programming-jobs.rss`
-  RSS por categoría (~25 ítems cada una); hay más categorías (full-stack, devops, design).
-  El elemento `<region>` trae la zona permitida.
+  RSS per category (~25 items each); more categories (full-stack, devops, design).
+  The `<region>` element carries the allowed zone.
 - **Himalayas** — `https://himalayas.app/jobs/rss`
-  RSS con las ~20 más recientes. `<himalayasJobs:locationRestriction>` trae UN país por vacante:
-  el filtro MX/US/CA es directo contra ese campo.
+  RSS with the ~20 most recent. `<himalayasJobs:locationRestriction>` carries ONE country per vacancy:
+  the MX/US/CA filter is direct against that field.
 - **Jobicy** — `https://jobicy.com/api/v2/remote-jobs?count=50`
-  JSON y el único con seniority normalizado (`jobLevel`: Senior, Director…)
-  más `jobGeo`. Parámetros: `count`, `industry`, `geo`.
+  JSON and the only one with normalized seniority (`jobLevel`: Senior, Director…)
+  plus `jobGeo`. Parameters: `count`, `industry`, `geo`.
 
-## Degradadas o sin API
+## Degraded or without API
 
-- **Remotive** — su API pública (`/api/remote-jobs`) quedó limitada: ignora `limit`/`search`/
-  `category` y devuelve ~14 vacantes totales. No usar como fuente principal; si se recupera,
-  era `?category=software-dev&limit=N`.
-- **LinkedIn Jobs** — no hay API pública y el scraping va contra sus términos (bloquea y
-  suspiende). Vía realista: búsquedas guardadas + alertas por correo (ese correo sí se puede
-  parsear), más revisión manual.
-- **Wellfound, YC Work at a Startup, HN Who is hiring** — sin API; revisión manual o parsing
-  puntual del thread de HN.
+- **Remotive** — its public API (`/api/remote-jobs`) became limited: ignores `limit`/`search`/
+  `category` and returns ~14 vacancies total. Do not use as primary source; if it recovers,
+  it was `?category=software-dev&limit=N`.
+- **LinkedIn Jobs** — no public API and scraping goes against their terms (blocks and
+  suspends). Realistic route: saved searches + email alerts (that email can be
+  parsed), plus manual review.
+- **Wellfound, YC Work at a Startup, HN Who is hiring** — no API; manual review or targeted parsing
+  of the HN thread.
 
-## Filtro de geografía (regla práctica)
+## Geography filter (practical rule)
 
-- «USA only» exige autorización de trabajo en EU: excluir por defecto.
-- Aceptan: Worldwide, Anywhere, Americas, LATAM, North America, Mexico,
-  y menciones explícitas de contratación en México (EOR o entidad local).
-- «Europe only» u otro continente: excluir.
+- "USA only" requires work authorization in the US: exclude by default.
+- Accepted: Worldwide, Anywhere, Americas, LATAM, North America, Mexico,
+  and explicit mentions of hiring in Mexico (EOR or local entity).
+- "Europe only" or other continent: exclude.

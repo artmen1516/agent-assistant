@@ -46,8 +46,8 @@ at OS level.
 
 ## Language
 
-All vault content is in English unless Arturo says otherwise. Apple Notes ideas are being migrated
-into `ideas/` in English.
+All vault content is in English unless Arturo says otherwise. Apple Notes ideas were migrated
+into `ideas/` in English on 2026-11-25.
 
 ## Frontmatter (every idea/project note)
 

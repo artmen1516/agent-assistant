@@ -1,23 +1,25 @@
-# agent-skills
+# agent-assistant
 
-Shared skills and rules for AI agents (Hermes, OpenCode, Claude Code, Codex, ...).
+Shared skills, rules, subagents, and conventions for AI agents (Hermes, OpenCode, Claude Code,
+Codex, ...).
 
 Install a skill with:
 
 ```bash
-npx skills add artmen1516/agent-skills
+npx skills add artmen1516/agent-assistant
 ```
 
 Or install a single skill:
 
 ```bash
-npx skills add artmen1516/agent-skills --skill obsidian-vault
+npx skills add artmen1516/agent-assistant --skill obsidian-vault
 ```
 
 ## Layout
 
 - `skills/` - one folder per skill, each with a `SKILL.md` (npx skills compatible).
 - `rules/` - shared rules and conventions for agents.
+- `subagents/` - reusable subagent prompts/definitions (planned).
 
 ## Skills
 

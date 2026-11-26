@@ -1,6 +1,6 @@
 ---
-name: ideas-y-drafts
-description: "Use when saving, recalling, or refining ideas across sessions."
+name: ideas-and-drafts
+description: "Save, recall, or refine ideas across sessions."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -14,6 +14,10 @@ metadata:
 ---
 
 # Ideas and drafts across sessions
+
+## When to Use
+
+Use when Arturo wants to capture, recall, or refine an idea or draft across sessions. Backed by the Obsidian vault `ideas/`. Do not use for code changes or project tracking (see `worker-code-agent` / vault projects).
 
 **Single source of truth: Obsidian vault › `ideas/`** (one note per idea, in English). Migrated
 from Apple Notes › `Ideas` on 2026-11-25. Viewable on iPhone/iPad via Obsidian; no need to maintain
@@ -87,8 +91,13 @@ implement. Rules:
 - Always close with an executable `Primer paso` in one session and `Abierto` with what remains
   to decide; that is the criterion for "ready" vs "draft".
 
-- To build the vacancy monitoring (idea `Búsqueda de trabajo remoto`), start from
-  `references/fuentes-trabajo-remoto.md` — verified endpoints and geography filter.
+- To build the vacancy monitoring, see project `job-search` (migrated from idea
+  `remote-job-search-monitoring-report`) and start from `references/fuentes-trabajo-remoto.md`
+  (verified endpoints and geography filter) plus `references/job-search-criteria.md`
+  (roles, preferences, compensation floors, validation rule).
+- Salary floors: never commit a number without market data. Validate with Salary.com (US state),
+  Glassdoor/Built In/Levels.fyi (US city/total comp), Glassdoor.ca/Payscale.ca (BC), and
+  Talentosy (MX gross monthly). 100k USD was too low for California; raised to $130k base.
 
 ## Close an idea
 
@@ -125,8 +134,9 @@ only if the user explicitly asks for `.md` files (e.g. to open them as an Obsidi
 
 ## The Obsidian vault (`HermesVault`) — source of truth (since 2026-11-25)
 
-A real vault registered in Obsidian: `HermesVault` in
-iCloud Drive, path `/Users/arturomendivil/Library/Mobile Documents/com~apple~CloudDocs/HermesVault`.
+A real vault registered in Obsidian: `HermesVault`. Resolve the path via
+`~/Library/Application Support/obsidian/obsidian.json` (currently the Obsidian app container
+`iCloud~md~obsidian/Documents/HermesVault`, NOT iCloud Drive `com~apple~CloudDocs`).
 It already has structure (`00-inbox/`, `ideas/`, `projects/`, `daily/`, `log/`, `templates/`,
 `attachments/`), templates, Dataview + Notion Bases plugins active and two Bases
 (`tracking.base` with table + kanban by `status`, `ideas.base`), plus a README with the

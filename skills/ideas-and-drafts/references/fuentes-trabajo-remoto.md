@@ -19,16 +19,17 @@ re-verify counts before building on them.
   JSON and the only one with normalized seniority (`jobLevel`: Senior, Director…)
   plus `jobGeo`. Parameters: `count`, `industry`, `geo`.
 
+## Account-based / manual (high value, US/CA sponsorship-friendly)
+
+- **VanHack** — US/CA roles, sponsorship-friendly, account required. High value for relocation-grade and remote US/CA roles.
+- **LinkedIn Jobs** — no public API and scraping goes against their terms (blocks and suspends). Realistic route: saved searches + email alerts (that email can be parsed), plus manual review.
+- **Wellfound** — startups, salary sometimes visible; manual review.
+- **YC Work at a Startup** — manual review.
+- **Hacker News "Who is hiring"** — manual review or targeted parsing of the thread.
+
 ## Degraded or without API
 
-- **Remotive** — its public API (`/api/remote-jobs`) became limited: ignores `limit`/`search`/
-  `category` and returns ~14 vacancies total. Do not use as primary source; if it recovers,
-  it was `?category=software-dev&limit=N`.
-- **LinkedIn Jobs** — no public API and scraping goes against their terms (blocks and
-  suspends). Realistic route: saved searches + email alerts (that email can be
-  parsed), plus manual review.
-- **Wellfound, YC Work at a Startup, HN Who is hiring** — no API; manual review or targeted parsing
-  of the HN thread.
+- **Remotive** — its public API (`/api/remote-jobs`) became limited: ignores `limit`/`search`/`category` and returns ~14 vacancies total. Do not use as primary source; if it recovers, it was `?category=software-dev&limit=N`.
 
 ## Geography filter (practical rule)
 

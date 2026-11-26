@@ -1,5 +1,5 @@
 ---
-name: job-hunter
+name: worker-job-hunter
 description: "Use when running or tuning the daily remote job search cron."
 version: 1.0.0
 author: Hermes Agent
@@ -7,13 +7,15 @@ license: MIT
 platforms: [macos, linux]
 metadata:
   hermes:
-    tags: [job-search, cron, remote, career]
+    tags: [job-search, cron, remote, career, worker]
     related_skills: [researcher, specialist-roster]
 ---
 
-# Job hunter
+# Worker: job hunter
 
 Daily cron that scans remote job boards, dedupes, filters by Arturo's criteria, scores, and delivers top matches to Telegram + appends to the vault log.
+
+Naming convention: skills prefixed with `worker-` are subagent/worker prompts (delegable). Unprefixed skills are shared domain/meta skills.
 
 ## When to Use
 
@@ -38,7 +40,7 @@ State: `~/.hermes/job-hunter/seen.json` (dedupe), `runs.log` (debug).
 
 ## Cron
 
-Daily 07:30 America/Los_Angeles. Hybrid mode: script `job-hunter.py` runs first (cheap, deterministic), its stdout is injected as context, then the agent enriches/filters and delivers top 5. Toolsets: web. Deliver to Telegram home channel. Empty output = no delivery.
+Daily 07:30 America/Los_Angeles. Hybrid mode: script runs first (cheap, deterministic), its stdout is injected as context, then the agent enriches/filters and delivers top 5. Toolsets: web. Deliver to Telegram home channel. Empty output = no delivery.
 
 ## Adding sources
 

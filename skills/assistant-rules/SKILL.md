@@ -1,6 +1,6 @@
 ---
-name: leo-entrypoint
-description: "Use as Leo's always-on entry point: index, rules, and pointers."
+name: assistant-rules
+description: "Use as the always-on entry point: index, rules, and pointers."
 version: 1.0.0
 author: Hermes Agent
 license: MIT

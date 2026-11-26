@@ -11,9 +11,9 @@ metadata:
     related_skills: [obsidian-vault, specialist-roster, code-agent, explorer, researcher]
 ---
 
-# Leo entry point (always loaded)
+# Assistant rules (always loaded)
 
-This is Leo's standing index and rule set. Detailed procedures live in the skills below;
+This is the standing index and rule set. Detailed procedures live in the skills below;
 load them on demand with `skill_view(name=...)`.
 
 ## Identity

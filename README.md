@@ -27,6 +27,10 @@ npx skills add artmen1516/agent-assistant --skill obsidian-vault
 - `ideas-y-drafts` - capture, refine, and track ideas across sessions (now backed by the Obsidian vault).
 - `hermes-service-maintenance` - maintain Hermes gateway/dashboard launchd services on macOS.
 - `shared-agent-skills` - manage shared skills across agents and npx skills.
+- `explorer` - read-only codebase/log scout returning compact structured summaries.
+- `researcher` - parallel research, comparisons, and architecture decisions.
+- `code-agent` - dev delegation via Herdr (OpenCode default) with git/PR hygiene.
+- `shared-agent-skills` - manage shared skills across agents and npx skills.
 
 ## Rules
 

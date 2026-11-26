@@ -28,7 +28,7 @@ herdr -> OpenCode, and Arturo (Mac mini, MacBook, iPhone, iPad).
 
 Read `~/Library/Application Support/obsidian/obsidian.json` and take the path of the only vault
 entry. Current path:
-`/Users/arturomendivil/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/HermesVault`
+`/Users/arturomendivil/Library/Mobile Documents/iCloud~md~obsidian/Documents/HermesVault`
 
 Obsidian app need not be running: agents read/write the markdown files directly. iCloud syncs
 at OS level.

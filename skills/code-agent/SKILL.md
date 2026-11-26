@@ -47,6 +47,25 @@ diff review, and PR hygiene. You do not write code yourself; you drive a coding 
    Enforce branch/commit conventions, push, and open a PR via `gh`.
 7. **Report** PR link and summary to Arturo. **Never auto-merge.**
 
+## Herdr CLI quick reference (hc)
+
+- `hc ls` — list live terminals (JSON). `hc ls --all` includes finished.
+- `hc get <t>` — show one terminal.
+- `hc run --bg --name <name> <cmd|template> "<task>"` — spawn persistent agent (always `--bg`).
+- `hc read <t>` / `hc read --lines 60 <t>` — print screen + history.
+- `hc send <t> "<text>"` — paste text + Enter.
+- `hc keys <t> <keys...>` — press keys (enter, esc, up, ctrl+c).
+- `hc interrupt <t>` — press stop key.
+- `hc wait <t>` / `hc wait --output X <t>` / `hc wait --children <t>` — wait for completion/output.
+- `hc attach [t]` — take over interactively (Ctrl+\ to detach).
+- `hc kill <t>` / `hc rm <t>` — end / remove terminal.
+- `hc templates` — list ready-made roles (reviewer, simplifier, implementers).
+- `hc events` — follow state changes live (OpenRPC event stream).
+- `hc server start|stop|status|restart` — daemon control (stop parks kept terminals).
+- `hc machine add|ls|...` — register other machines (MacBook) for unified `hc ls`.
+- `hc exec [--on m] <cmd>` — run a command, print output, exit with its code.
+- `hc file read|write|edit [--on m] <path>` — remote file ops.
+
 ## Guardrails
 
 - Never edit tracked repo code directly from Leo.

@@ -1,5 +1,5 @@
 ---
-name: code-agent
+name: worker-code-agent
 description: "Use for code changes in tracked repos via Herdr delegation."
 version: 1.0.0
 author: Hermes Agent
@@ -7,11 +7,13 @@ license: MIT
 platforms: [macos, linux]
 metadata:
   hermes:
-    tags: [code-agent, dev-delegation, herdr, opencode, git, pr]
-    related_skills: [herdr, obsidian-vault, explorer, researcher]
+    tags: [code-agent, dev-delegation, herdr, opencode, git, pr, worker, subagent]
+    related_skills: [herdr, obsidian-vault, worker-explorer, worker-researcher]
 ---
 
-# Code agent (dev delegation via Herdr)
+# Worker: code agent (dev delegation via Herdr)
+
+Naming convention: skills prefixed with `worker-` are subagent/worker prompts (delegable). Unprefixed skills are shared domain/meta skills.
 
 ## When to Use
 
@@ -28,6 +30,11 @@ diff review, and PR hygiene. You do not write code yourself; you drive a coding 
 
 - OpenCode (with OpenCode Go) is the default. Claude Code and Codex are optional.
 - Selection is per task; default to OpenCode unless Arturo specifies otherwise.
+- Default OpenCode model (`hungerg-free`) is often unavailable; pass an explicit model, e.g.
+  `--model opencode-go/deepseek-v4.1-flash`. Check `opencode models` for current availability.
+- Invocation syntax: `hc run --bg --name <name> --cwd <dir> opencode run --model <model> "<task>"`.
+  The task goes to `opencode run`, not as a directory argument (opencode interprets a bare
+  positional as a directory).
 
 ## Protocol
 
@@ -73,12 +80,17 @@ diff review, and PR hygiene. You do not write code yourself; you drive a coding 
 - Confirm before destructive actions (force push, branch deletion).
 - Keep sessions persistent across device switches (Mac mini / MacBook / phone).
 - If `herdr-core` is not running, do not spawn; report and propose starting the daemon.
+- `herdr-core` daemon is not a LaunchAgent by default (not in ~/Library/LaunchAgents); reboot
+  persistence is unverified. Provide a LaunchAgent plist + load command for the user to install.
+- `hc ls` (default) hides finished terminals; use `hc ls --all` when checking for completed sessions.
+- State transitions are monitored by the `hc-watchdog.py` cron (every 2 min, no_agent) which
+  posts to Telegram. Do not duplicate notifications; rely on the watchdog for async updates.
 
 ## Greenfield (2-phase)
 
-1. Leo + `researcher`/`explorer` draft a spec, create a Vault tracking note, `git init`
+1. Leo + `worker-researcher`/`worker-explorer` draft a spec, create a Vault tracking note, `git init`
    with `AGENTS.md`.
-2. Hand off to `code-agent` (`hc` -> OpenCode) starting from the spec.
+2. Hand off to `worker-code-agent` (`hc` -> OpenCode) starting from the spec.
 
 ## Output
 

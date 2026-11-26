@@ -10,7 +10,7 @@ prerequisites:
 metadata:
   hermes:
     tags: [obsidian, vault, notes, ideas, projects, tracking, shared-memory]
-    related_skills: [ideas-y-drafts, apple-notes, apple-reminders]
+    related_skills: [ideas-y-drafts, apple-notes, apple-reminders, code-agent]
 ---
 
 # Shared Obsidian vault
@@ -30,12 +30,19 @@ Read `~/Library/Application Support/obsidian/obsidian.json` and take the path of
 entry. Current path:
 `/Users/arturomendivil/Library/Mobile Documents/iCloud~md~obsidian/Documents/HermesVault`
 
+IMPORTANT: there are TWO iCloud containers. The Obsidian app on iOS/macOS reads from the
+app's private container `iCloud~md~obsidian/Documents/`, NOT from iCloud Drive
+(`com~apple~CloudDocs`). Writing the vault into iCloud Drive creates a ghost vault that iOS
+never sees and causes sync conflicts. Always use the path from obsidian.json.
+
 Obsidian app need not be running: agents read/write the markdown files directly. iCloud syncs
 at OS level.
 
 ## Structure
 
-- `00-inbox/` - quick capture; process and move to `ideas/` or `projects/`.
+- `profile.md` - personal context (full version; memory holds a short summary).
+- `specialists.md` - specialist roster, routing matrix, handoff contract.
+- `00-inbox/` - quick capture. Process and move to `ideas/` or `projects/`.
 - `ideas/` - one note per idea.
 - `projects/` - one note per project.
 - `daily/` - daily notes `YYYY-MM-DD.md`, link Apple Calendar events.
@@ -78,9 +85,15 @@ tags: [idea, <1-3 topic tags>]
 - Reminders and calendar -> Apple Reminders / Apple Calendar (do not migrate those; link from daily notes).
 - Apple Notes "Ideas" folder is legacy/archive after migration; do not write new ideas there.
 
+## Specialists
+
+Specialist roster, routing matrix, and handoff contract live in `specialists.md`
+(vault root). Read it when deciding whether to answer directly or delegate.
+
 ## Sync and access
 
-- Vault lives in iCloud Drive (file-level sync) -> readable on iPhone/iPad/MacBook via Obsidian app.
+- Vault lives in the Obsidian app's iCloud container (file-level sync) -> readable on
+  iPhone/iPad/MacBook via the Obsidian app.
 - Mark the folder "Keep Downloaded" in Finder on each Mac so iCloud does not evict files
   (evicted/dataless files cannot be read by the CLI -> "Resource deadlock avoided").
 - Remote access to the Mac mini: Tailscale (`mac-mini-m4.iguana-piano.ts.net`) for SSH/screen share;
@@ -88,10 +101,18 @@ tags: [idea, <1-3 topic tags>]
 
 ## Pitfalls
 
+- Two iCloud containers: `com~apple~CloudDocs` (iCloud Drive) vs `iCloud~md~obsidian` (Obsidian
+  app container). The iOS/macOS Obsidian app reads from the app container only. Writing the vault
+  into iCloud Drive creates a ghost vault iOS never sees and causes sync conflicts/conflict copies.
+  Always resolve the path via obsidian.json.
 - iCloud eviction: files can become `dataless`; if a read fails with "Resource deadlock avoided",
   open the vault in the Obsidian app to materialize, or mark "Keep Downloaded".
-- Folder renames/moves in iCloud cause conflict copies ("Obsidian 2"). Avoid restructuring;
-  prefer stable paths. If a conflict copy appears, move its contents into the canonical vault and
-  delete the copy.
-- Empty folders may not sync; recreate if missing.
+- Folder renames/moves in iCloud cause conflict copies ("Obsidian 2") or silent data loss.
+  Avoid restructuring; prefer stable paths. If a conflict copy appears, move its contents into the
+  canonical vault and delete the copy.
+- Deleting a folder on one device (e.g. an "empty" Obsidian folder on iPhone) can delete the real
+  vault via iCloud sync. Verify on Mac (`ls`) before deleting; never delete the container folder.
+- Empty folders may not sync; recreate if missing (or add a `.keep` placeholder).
+- Plugin recovery: if `.obsidian/plugins/` is wiped (iCloud sync), re-download plugin files
+  (dataview, notion-bases) from their GitHub releases.
 - Two sources diverge: write ideas only in the vault, not in Apple Notes.

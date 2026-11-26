@@ -42,9 +42,9 @@ mirror modality (voice -> audio .ogg/Opus), direct, no filler, concise.
 - `specialist-roster` — when to answer directly vs. delegate; routing matrix; handoff
   contract. Load before delegating or planning multi-step work.
 - `code-agent` — dev delegation via Herdr (OpenCode default). Load for any code change.
-- `explorer` — read-only codebase/log scout. Load for large-repo exploration.
-- `researcher` — parallel research/comparisons. Load for research tasks.
-- `ideas-y-drafts` — idea capture/refinement (now backed by the vault).
+- `worker-explorer` — read-only codebase/log scout. Load for large-repo exploration.
+- `worker-researcher` — parallel research/comparisons. Load for research tasks.
+- `ideas-and-drafts` — idea capture/refinement (now backed by the vault).
 - `hermes-service-maintenance` — Hermes gateway/dashboard launchd upkeep.
 - `shared-agent-skills` — how to share/version skills via the agent-assistant repo.
 

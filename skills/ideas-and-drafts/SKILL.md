@@ -24,8 +24,9 @@ from Apple Notes › `Ideas` on 2026-11-25. Viewable on iPhone/iPad via Obsidian
 two systems. Reminders were retired on 2026-11-11 by Arturo's decision: do not create
 reminders for ideas. Apple Notes › `Ideas` remains as archive/legacy: do not write new ideas there.
 
-Each note carries on its first line `Estado: en curso | pendiente | idea | hecha | descartada`.
-Only `en curso` and `pendiente` enter the daily digest; the rest is library and generates no noise.
+Each idea note carries YAML frontmatter with `status: Idea | Exploring | Planned | Done | Archived`.
+(Idea statuses only — `In progress` and `Blocked` belong to projects, not ideas.)
+Only `Exploring` and `Planned` ideas enter the daily digest; the rest is library and generates no noise.
 
 ## Save an idea → note in Notes
 
@@ -101,7 +102,8 @@ implement. Rules:
 
 ## Close an idea
 
-Edit only the `Estado:` line of the note (`hecha` or `descartada`): it leaves the digest and the
+Set the idea's `status` to `Done` (idea fully fleshed out) or `Archived` (dropped or
+promoted to a project, with `project: [[projects/<name>]]`). It leaves the digest and the
 file stays as history.
 
 ## Automatic reminder

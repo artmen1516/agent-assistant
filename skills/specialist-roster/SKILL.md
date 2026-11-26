@@ -43,14 +43,14 @@ Every subagent starts with zero chat history. Package:
 | Scenario | Route | Rationale |
 |---|---|---|
 | Micro-task / quick script | Direct `delegate_task` (no `hc`) | Ephemeral, fast, zero session/PR overhead. |
-| Planned change in tracked project | `Leo -> code-agent -> hc -> OpenCode` | Persistent across devices, mid-run `needs you` / `hc attach`, diff review + PR hygiene. |
-| Greenfield (new project) | 2-phase: (1) Leo + researcher/explorer draft spec, create Vault tracking note, `git init` with `AGENTS.md`; (2) handoff to `code-agent` | Prevents blind improvisation. |
+| Planned change in tracked project | `Leo -> worker-code-agent -> hc -> OpenCode` | Persistent across devices, mid-run `needs you` / `hc attach`, diff review + PR hygiene. |
+| Greenfield (new project) | 2-phase: (1) Leo + worker-researcher/worker-explorer draft spec, create Vault tracking note, `git init` with `AGENTS.md`; (2) handoff to `worker-code-agent` (`hc` -> OpenCode) | Prevents blind improvisation. |
 
 ## Active roster
 
 ### Wave 1 (core)
-- `explorer` (ephemeral, read-only): scans large repos/logs/docs, returns compact summary.
-- `researcher` (ephemeral parallel + scheduled): parallel research/synthesis; powers the daily digest.
+- `worker-explorer` (ephemeral, read-only): scans large repos/logs/docs, returns compact summary.
+- `worker-researcher` (ephemeral parallel + scheduled): parallel research/synthesis; powers the daily digest.
 - `code-agent` (persistent via `hc`): owns dev-delegation lifecycle and git/PR hygiene.
 
 ### Wave 2

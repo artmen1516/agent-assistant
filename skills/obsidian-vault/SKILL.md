@@ -10,7 +10,7 @@ prerequisites:
 metadata:
   hermes:
     tags: [obsidian, vault, notes, ideas, projects, tracking, shared-memory]
-    related_skills: [ideas-y-drafts, apple-notes, apple-reminders, code-agent]
+    related_skills: [ideas-and-drafts, apple-notes, apple-reminders, worker-code-agent]
 ---
 
 # Shared Obsidian vault
@@ -69,6 +69,12 @@ tags: [idea, <1-3 topic tags>]
 ---
 ```
 
+## Status convention
+
+Ideas: Idea, Exploring, Planned, Done, Archived. Projects: Planned, In progress, Blocked, Done, Archived.
+Ideas never carry In progress/Blocked: promote to a project (create `projects/<name>.md`) and set the
+idea to `Archived` with `project: [[projects/<name>]]`.
+
 ## Agent protocol
 
 1. One note per idea/project; filename = readable English title (kebab-case).
@@ -78,12 +84,30 @@ tags: [idea, <1-3 topic tags>]
 5. Append global decisions to `log/YYYY-MM.md`.
 6. Never delete notes; archive with `status: Archived`.
 7. Quick capture goes to `00-inbox/`, process later.
+8. Promoting an idea to a project: create the project note in `projects/`, then set the idea's
+   `status: Archived` and append a dated `## Log` entry `Migrated to projects/<name>.md`
+   (never delete the idea).
 
 ## Boundaries with Apple apps
 
 - Ideas, notes, project tracking -> vault.
 - Reminders and calendar -> Apple Reminders / Apple Calendar (do not migrate those; link from daily notes).
 - Apple Notes "Ideas" folder is legacy/archive after migration; do not write new ideas there.
+
+## External repositories (GitHub)
+
+Project notes may represent external repositories (e.g., GitHub repos): put the repo URL in
+`## Context` and track open issues/PRs as `next` or in `## Plan`. For a portfolio with many
+repos, an index/tracker note listing repos (name, language, visibility, last push, status, next,
+open issues, link) is acceptable; create individual project notes only for active repos or those
+with open issues. Place the index at vault root (not in `projects/`) so it stays out of
+`tracking.base`; leave the Vault note column as `—` until a project note exists. When an issue is implemented, append a dated entry to that note's `## Log`
+linking the commit/PR. Flow: issue -> Herdr/OpenCode (code-agent) -> PR -> Arturo approves
+merge -> Log. Never auto-merge.
+
+## Tracking logs
+
+A root-level markdown table (not a note in `projects/`) can serve as a tracking log for a stream of entries (applications, leads, posts). Convention: a subtitle line "One row per <X>. Every <domain> metric is counted from here.", a fixed column set, and a status progression column that starts at a recording-only value (e.g. `Found`) and advances (`Applied` -> `Interview` -> `Rejected`/`Offer`/`Withdrawn`). Keep the log at vault root so it stays out of `tracking.base`; create individual project notes only when an entry becomes an active project.
 
 ## Sync and access
 
@@ -111,3 +135,6 @@ tags: [idea, <1-3 topic tags>]
 - Plugin recovery: if `.obsidian/plugins/` is wiped (iCloud sync), re-download plugin files
   (dataview, notion-bases) from their GitHub releases.
 - Two sources diverge: write ideas only in the vault, not in Apple Notes.
+- Markdown tables: when appending rows programmatically, do not insert a blank line between the
+  separator row (`|---|`) and the data rows — a blank line breaks the table in Obsidian and
+  standard Markdown. Write rows immediately after the separator.

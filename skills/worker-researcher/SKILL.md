@@ -1,17 +1,19 @@
 ---
-name: researcher
-description: "Use for parallel research, comparisons, and architecture decisions."
+name: worker-researcher
+description: "Parallel research, comparisons, and architecture decisions."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
 platforms: [macos, linux]
 metadata:
   hermes:
-    tags: [researcher, research, parallel, synthesis, subagent]
-    related_skills: [obsidian-vault, explorer]
+    tags: [researcher, research, parallel, synthesis, worker, subagent]
+    related_skills: [obsidian-vault, worker-explorer]
 ---
 
-# Researcher (parallel research & synthesis)
+# Worker: researcher (parallel research & synthesis)
+
+Naming convention: skills prefixed with `worker-` are subagent/worker prompts (delegable). Unprefixed skills are shared domain/meta skills.
 
 ## When to Use
 

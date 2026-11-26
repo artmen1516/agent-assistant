@@ -1,17 +1,19 @@
 ---
-name: explorer
-description: "Use when scanning large repos, logs, or docs for a compact summary."
+name: worker-explorer
+description: "Scan large repos/logs/docs into a compact summary."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
 platforms: [macos, linux]
 metadata:
   hermes:
-    tags: [explorer, research, codebase, read-only, subagent]
-    related_skills: [obsidian-vault, code-agent]
+    tags: [explorer, research, codebase, read-only, worker, subagent]
+    related_skills: [obsidian-vault, worker-code-agent]
 ---
 
-# Explorer (read-only codebase/log scout)
+# Worker: explorer (read-only codebase/log scout)
+
+Naming convention: skills prefixed with `worker-` are subagent/worker prompts (delegable). Unprefixed skills are shared domain/meta skills.
 
 ## When to Use
 

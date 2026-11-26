@@ -24,6 +24,7 @@ npx skills add artmen1516/agent-assistant --skill obsidian-vault
 ## Skills
 
 - `obsidian-vault` - how to read/write the shared Obsidian vault (notes, ideas, projects, tracking).
+- `leo-entrypoint` - Leo's always-on entry point: index, rules, and pointers to other skills.
 - `specialist-roster` - specialist roster, routing matrix, and handoff contract for the orchestrator.
 - `ideas-y-drafts` - capture, refine, and track ideas across sessions (now backed by the Obsidian vault).
 - `hermes-service-maintenance` - maintain Hermes gateway/dashboard launchd services on macOS.

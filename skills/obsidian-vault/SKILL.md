@@ -85,11 +85,6 @@ tags: [idea, <1-3 topic tags>]
 - Reminders and calendar -> Apple Reminders / Apple Calendar (do not migrate those; link from daily notes).
 - Apple Notes "Ideas" folder is legacy/archive after migration; do not write new ideas there.
 
-## Specialists
-
-Specialist roster, routing matrix, and handoff contract live in `specialists.md`
-(vault root). Read it when deciding whether to answer directly or delegate.
-
 ## Sync and access
 
 - Vault lives in the Obsidian app's iCloud container (file-level sync) -> readable on

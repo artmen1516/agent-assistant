@@ -32,7 +32,7 @@ npx skills add artmen1516/agent-assistant --skill obsidian-vault
 - `explorer` - read-only codebase/log scout returning compact structured summaries.
 - `researcher` - parallel research, comparisons, and architecture decisions.
 - `code-agent` - dev delegation via Herdr (OpenCode default) with git/PR hygiene.
-- `shared-agent-skills` - manage shared skills across agents and npx skills.
+- `job-hunter` - daily remote job search: fetch, dedupe, filter, score, log to vault, deliver top matches.
 
 ## Rules
 
